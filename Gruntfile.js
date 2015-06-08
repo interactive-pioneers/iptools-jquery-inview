@@ -24,14 +24,14 @@ module.exports = function(grunt) {
     watch: {
       qa: {
         files: [
-          '<%= yeoman.src %>/iptools-jquery-tooltip.js',
+          '<%= yeoman.src %>/iptools-jquery-inview.js',
           'test/spec/test.js'
         ],
         tasks: ['concurrent:qa']
       },
       bdd: {
         files: [
-          '<%= yeoman.src %>/iptools-jquery-tooltip.js',
+          '<%= yeoman.src %>/iptools-jquery-inview.js',
           'test/spec/test.js'
         ],
         tasks: ['test']
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/iptools-jquery-tooltip.min.js': 'src/iptools-jquery-tooltip.js'
+          'dist/iptools-jquery-inview.min.js': 'src/iptools-jquery-inview.js'
         }
       }
     },
