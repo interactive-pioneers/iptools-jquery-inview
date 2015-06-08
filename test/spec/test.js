@@ -4,6 +4,7 @@
   describe('iptInView', function() {
 
     var config = {
+      throttle: 0,
       delay: 1000
     };
 
@@ -12,11 +13,10 @@
 
     var $element = $('<div/>', {
       class: 'element',
-      style: 'position: absolute; top: 1000px; left: 200px; width: 100px; height: 100px;'
+      style: 'position: absolute; top: 0; left: 50%; width: 100px; height: 100px; background-color: #000;'
     }).appendTo('body');
 
-    var $window = $(window);
-    $window.width(1024).height(768);
+    window.resizeTo(1024, 768);
 
     describe('init', function() {
 
@@ -26,6 +26,10 @@
 
       it('expected to construct object', function() {
         return expect(object).to.be.an.object;
+      });
+
+      it('expected to set throttle to ' + config.throttle, function() {
+        return expect(object.data(pluginName).settings.throttle).to.equal(config.throttle);
       });
 
       it('expected to set delay to ' + config.delay, function() {
@@ -41,7 +45,7 @@
       });
 
       it('expected object to be returned', function() {
-        return expect(object.data(pluginName).getViewport).to.be.an.object;
+        return expect(object.data(pluginName).getViewport()).to.be.an.object;
       });
 
     });
@@ -52,13 +56,8 @@
         object = $element.iptInView(config);
       });
 
-      it('expected to return false (element is not in viewport)', function() {
-        return expect(object.data(pluginName).isInView).to.not.be.ok;
-      });
-
       it('expected to return true (element is in viewport)', function() {
-        $window.scrollTop(300);
-        return expect(object.data(pluginName).isInView).to.be.ok;
+        return expect(object.data(pluginName).isInView()).to.be.ok;
       });
 
     });
