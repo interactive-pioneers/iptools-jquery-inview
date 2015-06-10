@@ -229,7 +229,7 @@
 
     destroy: function() {
       this.$element.off('scroll' + '.' + this._name);
-      this.$element.removeData();
+      this.$element.removeData('plugin_' + pluginName);
     }
 
   };
