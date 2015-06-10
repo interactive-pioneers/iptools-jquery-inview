@@ -160,8 +160,8 @@
      */
     executeWithDelay: function(fn) {
 
-      if (this.delay > 0) {
-        setTimeout(fn, this.delay);
+      if (this.setting.delay > 0) {
+        setTimeout(fn, this.settings.delay);
       } else {
         fn.call(this);
       }
