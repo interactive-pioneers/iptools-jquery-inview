@@ -1,7 +1,7 @@
 {
   "name": "iptools-jquery-inview",
   "description": "Viewport monitoring plugin",
-  "main": "src/iptools-jquery-inview.js",
+  "main": "dist/iptools-jquery-inview.min.js",
   "version": "0.0.2",
   "license": "GPL-3.0",
   "ignore": [
