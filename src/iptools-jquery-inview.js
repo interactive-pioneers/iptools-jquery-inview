@@ -159,11 +159,11 @@
      * @returns {undefined}
      */
     executeWithDelay: function(fn) {
-
-      if (this.settings.delay > 0) {
-        setTimeout(fn, this.settings.delay);
+      var self = this;
+      if (self.settings.delay > 0) {
+        setTimeout(function() { fn(self); }, self.settings.delay);
       } else {
-        fn.call(this);
+        fn.call(self);
       }
 
     },
