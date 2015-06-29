@@ -12,6 +12,7 @@ module.exports = function(grunt) {
     yeoman: {
       src: 'src',
       dist: 'dist',
+      test: 'test',
       pkg: grunt.file.readJSON('package.json'),
       meta: {
         banner: '/*! <%= yeoman.pkg.name %> - v<%= yeoman.pkg.version %> - ' +
@@ -59,6 +60,7 @@ module.exports = function(grunt) {
       qa: {
         tasks: [
           'jshint',
+          'jscs',
           'mocha'
         ]
       },
@@ -86,6 +88,20 @@ module.exports = function(grunt) {
             '<%= yeoman.dist %>/*'
           ]
         }]
+      }
+    },
+    jscs: {
+      options: {
+        config: '.jscsrc',
+        esnext: false,
+        verbose: true
+      },
+      files: {
+        src: [
+          'Gruntfile.js',
+          '<%= yeoman.test %>/spec/*.js',
+          '<%= yeoman.src %>/*.js'
+        ]
       }
     }
   });
