@@ -16,6 +16,10 @@
   <script src="spec/test.js"></script>
   <script src="../src/iptools-jquery-inview.js"></script>
   <script>mocha.setup({globals: ['$']});</script>
-  <script>mocha.run();</script>
+  <script>
+    if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+      mocha.run();
+    }
+  </script>
 </body>
 </html>
