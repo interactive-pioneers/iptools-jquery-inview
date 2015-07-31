@@ -54,24 +54,24 @@ Detect if element is in viewport and call events on enter and exit.
 <script src="src/iptools-jquery-inview.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-      function onAppear(event) {
-        alert('Element enters viewport.');
-      }
-      function onAppeared(event) {
-        alert('Element fully entered viewport.');
-      }
-      function onFirstAppear(event) {
-        alert('Element enters viewport for the first time.');
-      }
-      function onFirstAppeared(event) {
-        alert('Element fully entered viewport for the first time.');
-      }
-      function onDisappear(event) {
-        alert('Element starts leaving the viewport.');
-      }
-      function onDisappeared(event) {
-        alert('Element no longer in viewport.');
-      }
+    function onAppear(event) {
+      alert('Element enters viewport.');
+    }
+    function onAppeared(event) {
+      alert('Element fully entered viewport.');
+    }
+    function onFirstAppear(event) {
+      alert('Element enters viewport for the first time.');
+    }
+    function onFirstAppeared(event) {
+      alert('Element fully entered viewport for the first time.');
+    }
+    function onDisappear(event) {
+      alert('Element starts leaving the viewport.');
+    }
+    function onDisappeared(event) {
+      alert('Element no longer in viewport.');
+    }
     $('.element')
       .iptInView({
         triggerEvents: true,
