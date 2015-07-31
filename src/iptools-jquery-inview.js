@@ -10,7 +10,7 @@
     delay: 500,
     inViewClass: 'in-viewport',
     allInViewClass: 'all-in-viewport',
-    triggerEvents: true,
+    triggerEvents: false,
     eventNamespace: pluginName,
     onAppear: noop,
     onAppeared: noop,
