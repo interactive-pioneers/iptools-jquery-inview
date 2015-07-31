@@ -222,14 +222,12 @@
      * @returns {undefined}
      */
     addEventListeners: function() {
-
       this.window.on('scroll' + '.' + this._name, null, this, this.handleScroll);
-
     },
 
     destroy: function() {
-      this.$element.off('scroll' + '.' + this._name);
-      this.$element.removeData('plugin_' + pluginName);
+      this.element.off('scroll' + '.' + this._name);
+      this.element.removeData('plugin_' + pluginName);
     }
 
   };
