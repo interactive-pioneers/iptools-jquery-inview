@@ -10,7 +10,7 @@ Detect if element is in viewport and call events on enter and exit.
 
 - jQuery 1.11.3 or greater
 
-## Example
+## Example with callbacks
 
 ```html
 <div class="element"></div>
@@ -42,6 +42,46 @@ Detect if element is in viewport and call events on enter and exit.
         alert('Element no longer in viewport.');
       }
     });
+  });
+</script>
+```
+
+## Example with event listeners
+
+```html
+<div class="element"></div>
+
+<script src="src/iptools-jquery-inview.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    function onAppear(event) {
+      alert('Element enters viewport.');
+    }
+    function onAppeared(event) {
+      alert('Element fully entered viewport.');
+    }
+    function onFirstAppear(event) {
+      alert('Element enters viewport for the first time.');
+    }
+    function onFirstAppeared(event) {
+      alert('Element fully entered viewport for the first time.');
+    }
+    function onDisappear(event) {
+      alert('Element starts leaving the viewport.');
+    }
+    function onDisappeared(event) {
+      alert('Element no longer in viewport.');
+    }
+    $('.element')
+      .iptInView({
+        triggerEvents: true,
+        eventNamespace: 'customEventNamespace',
+      })
+      .on('onAppear.customEventNamespace', onAppear)
+      .on('onAppeared.customEventNamespace', onAppeared)
+      .on('onFirstAppear.customEventNamespace', onFirstAppear)
+      .on('onFirstAppeared.customEventNamespace', onFirstAppeared)
+      .on('onDisappeared.customEventNamespace', onDisappeared);
   });
 </script>
 ```

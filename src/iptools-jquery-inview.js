@@ -16,6 +16,8 @@
     delay: 500,
     inViewClass: 'in-viewport',
     allInViewClass: 'all-in-viewport',
+    triggerEvents: false,
+    eventNamespace: pluginName,
     onAppear: noop,
     onAppeared: noop,
     onFirstAppear: noop,
@@ -31,14 +33,12 @@
    * @param {object} options - plugin options
    */
   function IPTInView(element, options) {
-
     this.element = $(element);
     this.settings = $.extend({}, defaults, options);
     this._defaults = defaults;
     this._name = pluginName;
 
     this.init();
-
   }
 
   IPTInView.prototype = {
@@ -46,18 +46,19 @@
     init: function() {
 
       this.window = $(window);
+
       this.update();
 
       this.lastScroll = 0;
 
       if (this.inView) {
-        this.executeWithDelay(this.settings.onAppear);
-        this.executeWithDelay(this.settings.onFirstAppear);
+        this.executeWithDelay(this.settings.onAppear, 'onAppear');
+        this.executeWithDelay(this.settings.onFirstAppear, 'onFirstAppear');
       }
 
       if (this.allInView) {
-        this.executeWithDelay(this.settings.onAppeared);
-        this.executeWithDelay(this.settings.onFirstAppeared);
+        this.executeWithDelay(this.settings.onAppeared, 'onAppeared');
+        this.executeWithDelay(this.settings.onFirstAppeared, 'onFirstAppeared');
       }
 
       this.appearCount = this.inView ? 1 : 0;
@@ -162,13 +163,23 @@
 
     /**
      * execute a function with delay
+     * @param {function} fn - function to be executed
+     * @param {string} trigger - trigger
      * @returns {undefined}
      */
-    executeWithDelay: function(fn) {
+    executeWithDelay: function(fn, trigger) {
 
       var self = this;
       if (self.settings.delay > 0) {
-        setTimeout(function() { fn(self); }, self.settings.delay);
+        setTimeout(
+          function() {
+            fn(self);
+            if (self.settings.triggerEvents) {
+              self.element.trigger(trigger + '.' + self.settings.eventNamespace);
+            }
+          },
+          self.settings.delay
+        );
       } else {
         fn.call(self);
       }
@@ -195,27 +206,27 @@
         self.update();
 
         if (!beforeScroll.inView && self.inView) {
-          self.executeWithDelay(self.settings.onAppear);
+          self.executeWithDelay(self.settings.onAppear, 'onAppear');
           if (self.appearCount === 0) {
-            self.executeWithDelay(self.settings.onFirstAppear);
+            self.executeWithDelay(self.settings.onFirstAppear, 'onFirstAppear');
           }
           self.appearCount++;
         }
 
         if (!beforeScroll.allInView && self.allInView) {
-          self.executeWithDelay(self.settings.onAppeared);
+          self.executeWithDelay(self.settings.onAppeared, 'onAppeared');
           if (self.appearedCount === 0) {
-            self.executeWithDelay(self.settings.onFirstAppeared);
+            self.executeWithDelay(self.settings.onFirstAppeared, 'onFirstAppeared');
           }
           self.appearedCount++;
         }
 
         if (beforeScroll.allInView && !self.allInView) {
-          self.executeWithDelay(self.settings.onDisappear);
+          self.executeWithDelay(self.settings.onDisappear, 'onDisappear');
         }
 
         if (beforeScroll.inView && !self.inView) {
-          self.executeWithDelay(self.settings.onDisappeared);
+          self.executeWithDelay(self.settings.onDisappeared, 'onDisappeared');
         }
 
         self.lastScroll = now;
@@ -229,9 +240,7 @@
      * @returns {undefined}
      */
     addEventListeners: function() {
-
       this.window.on('scroll' + '.' + this._name, null, this, this.handleScroll);
-
     },
 
     /**
@@ -239,8 +248,8 @@
      * @returns {undefined}
      */
     destroy: function() {
-      this.$element.off('scroll' + '.' + this._name);
-      this.$element.removeData('plugin_' + pluginName);
+      this.element.off('scroll' + '.' + this._name);
+      this.element.removeData('plugin_' + pluginName);
     }
 
   };
