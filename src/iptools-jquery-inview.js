@@ -1,3 +1,9 @@
+/*
+ * jQuery viewport monitoring plugin.
+ *
+ * Copyright © 2015, David Lehnen, Interactive Pioneers GmbH
+ */
+
 ;(function($, window) {
 
   'use strict';
@@ -227,6 +233,10 @@
 
     },
 
+    /**
+     * destroy IPTInView
+     * @returns {undefined}
+     */
     destroy: function() {
       this.$element.off('scroll' + '.' + this._name);
       this.$element.removeData('plugin_' + pluginName);
