@@ -12,7 +12,7 @@
 
   var pluginName = 'iptInView';
   var defaults = {
-    throttle: 100,
+    throttle: 50,
     delay: 500,
     inViewClass: 'in-viewport',
     allInViewClass: 'all-in-viewport',
