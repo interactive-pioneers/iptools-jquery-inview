@@ -165,6 +165,7 @@
      * @returns {undefined}
      */
     executeWithDelay: function(fn) {
+
       var self = this;
       if (self.settings.delay > 0) {
         setTimeout(function() { fn(self); }, self.settings.delay);
