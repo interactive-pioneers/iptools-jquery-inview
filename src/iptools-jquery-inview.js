@@ -164,10 +164,10 @@
     /**
      * execute a function with delay
      * @param {function} fn - function to be executed
-     * @param {string} trigger - trigger
+     * @param {string} eventName - event to be triggered
      * @returns {undefined}
      */
-    executeWithDelay: function(fn, trigger) {
+    executeWithDelay: function(fn, eventName) {
 
       var self = this;
       if (self.settings.delay > 0) {
@@ -175,7 +175,7 @@
           function() {
             fn(self);
             if (self.settings.triggerEvents) {
-              self.element.trigger(trigger + '.' + self.settings.eventNamespace);
+              self.element.trigger(eventName + '.' + self.settings.eventNamespace);
             }
           },
           self.settings.delay
