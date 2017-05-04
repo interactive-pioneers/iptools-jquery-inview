@@ -1,5 +1,7 @@
 'use strict';
-/* jshint undef: false */
+
+/* global describe, expect, it, beforeEach */
+
 (function() {
   describe('iptInView', function() {
 
