@@ -1,6 +1,6 @@
 'use strict';
 
-/* global describe, expect, it, beforeEach */
+/* global expect */
 
 (function() {
   describe('iptInView', function() {
@@ -12,20 +12,21 @@
 
     var pluginName = 'plugin_iptInView';
     var object = null;
-
-    var $element = $('<div/>', {
-      class: 'element',
-      style: 'position: absolute; top: 0; left: 50%; width: 100px; height: 100px; background-color: #000;'
-    }).appendTo('body');
+    var selector = '.element';
 
     describe('init', function() {
 
       beforeEach(function() {
-        object = $element.iptInView(config);
+        object = $(selector).iptInView(config);
+      });
+
+      afterEach(function() {
+        object.data(pluginName).destroy();
       });
 
       it('expected to construct object', function() {
-        return expect(object).to.be.an.object;
+        console.log('object is ', object.data(pluginName));
+        return expect(object.data(pluginName)).to.be.an.object;
       });
 
       it('expected to set throttle to ' + config.throttle, function() {
@@ -41,7 +42,11 @@
     describe('getViewport', function() {
 
       beforeEach(function() {
-        object = $element.iptInView(config);
+        object = $(selector).iptInView(config);
+      });
+
+      afterEach(function() {
+        object.data(pluginName).destroy();
       });
 
       it('expected object to be returned', function() {
@@ -50,17 +55,15 @@
 
     });
 
-    describe('isInView', function() {
+    xdescribe('isInView', function() {
 
       beforeEach(function() {
-        object = $element.iptInView(config);
+        object = $(selector).iptInView(config);
       });
 
-      /*
       it('expected to return true (element is in viewport)', function() {
         return expect(object.data(pluginName).isInView()).to.be.ok;
       });
-      */
 
     });
 
