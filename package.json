@@ -24,7 +24,7 @@
   "bugs": "https://github.com/interactive-pioneers/iptools-jquery-inview/issues",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.4",
+    "grunt": "~1.0.1",
     "grunt-concurrent": "~0.5.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-connect": "~0.7.1",
