@@ -58,5 +58,11 @@
     "viewport",
     "inview",
     "jquery"
+  ],
+  "files": [
+    "*.md",
+    "LICENSE",
+    "src",
+    "dist"
   ]
 }
