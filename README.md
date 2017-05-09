@@ -8,7 +8,7 @@ Detect if element is in viewport and call events on enter and exit.
 
 ## Requirements
 
-- jQuery 1.11.3 or greater
+- jQuery >=1.11.3 <4.0.0
 
 ## Example with callbacks
 
