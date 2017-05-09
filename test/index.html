@@ -3,19 +3,18 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Mocha Spec Runner</title>
-  <link rel="stylesheet" href="lib/mocha/mocha.css">
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
 </head>
 <body>
   <div id="mocha"></div>
-
-  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="lib/mocha/mocha.js"></script>
+  <div class="element" style="position: absolute; top: 0; left: 50%; width: 100px; height: 100px; background-color: #000;"></div>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/chai/chai.js"></script>
   <script>mocha.setup('bdd');</script>
-  <script src="lib/chai.js"></script>
   <script>var expect = chai.expect;</script>
   <script src="spec/test.js"></script>
   <script src="../src/iptools-jquery-inview.js"></script>
-  <script>mocha.setup({globals: ['$']});</script>
   <script>
     if (navigator.userAgent.indexOf('PhantomJS') < 0) {
       mocha.run();

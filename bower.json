@@ -1,8 +1,7 @@
 {
   "name": "iptools-jquery-inview",
   "description": "Viewport monitoring plugin",
-  "main": "dist/iptools-jquery-inview.min.js",
-  "version": "0.0.5",
+  "main": "src/iptools-jquery-inview.js",
   "license": "GPL-3.0",
   "ignore": [
     ".git*",
@@ -11,7 +10,7 @@
     "Gruntfile.js"
   ],
   "dependencies": {
-    "jquery": ">=1.11.3"
+    "jquery": ">=1.11.3 <4.0.0"
   },
   "devDependencies": {
   },
