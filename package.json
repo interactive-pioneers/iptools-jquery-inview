@@ -38,7 +38,6 @@
     "jit-grunt": "~0.3.2",
     "time-grunt": "~0.3.1",
     "grunt-jscs": "~1.8.0",
-    "grunt-cli": "~1.2.0",
     "chai": "~3.5.0"
   },
   "engines": {
